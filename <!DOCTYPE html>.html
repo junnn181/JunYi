@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Junnn181 | Social Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+TC:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0A0A0A;
+            --bg-card: #141414;
+            --text-main: #E5E5E5;
+            --accent: #C5A368; 
+            --accent-glow: rgba(197, 163, 104, 0.3);
+            --border: #222222;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .hub-container {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
+
+        /* 頭像外圈呼吸燈 */
+        .avatar-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px;
+        }
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            object-fit: cover; /* 確保圖片不變形 */
+            position: relative;
+            z-index: 2;
+            background: #1a1a1a;
+        }
+        .avatar-glow {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%;
+            background: var(--accent);
+            filter: blur(15px);
+            opacity: 0.4;
+            animation: breathe 4s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(0.95); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.6; }
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+        .link-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            background: #1C1C1C;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .link-card span {
+            font-weight: 500;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        
+        .work-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 0;
+            scrollbar-width: none;
+        }
+        .work-slider::-webkit-scrollbar { display: none; }
+        .work-item {
+            flex: 0 0 140px;
+            height: 180px;
+            background: #161616;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: black;
+            padding: 8px 25px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hub-container">
+        <!-- 個人頭像區 -->
+        <div class="avatar-wrapper">
+            <div class="avatar-glow"></div>
+            <!-- 修改此處：將 src 換成你的圖片路徑，例如 "me.jpg" -->
+            <img src="avatar.jpg" alt="峻先森" class="avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <!-- 備用文字頭像 (當圖片讀取失敗時顯示) -->
+            <div class="avatar hidden items-center justify-center text-accent text-3xl font-serif italic">W</div>
+        </div>
+        
+        <h1 class="text-3xl font-semibold text-white tracking-widest mb-1">峻先森</h1>
+        <p class="font-serif italic text-accent text-lg mb-6">Digital Multimedia Designer</p>
+        
+        <p class="text-gray-500 text-sm mb-10 leading-relaxed px-6">
+            探索數位媒材的無限可能。<br>點擊下方連結追蹤我的最新創作動態。
+        </p>
+
+        <div class="px-2">
+            <a href="https://instagram.com/impreza6696" target="_blank" class="link-card">
+                <span class="mr-3">📸</span> <span>INSTAGRAM</span>
+            </a>
+            <a href="https://threads.net/impreza6696" target="_blank" class="link-card">
+                <span class="mr-3">🧵</span> <span>THREADS</span>
+            </a>
+            <a href="https://twitch.tv/junyi_0121" target="_blank" class="link-card">
+                <span class="mr-3">👾</span> <span>TWITCH LIVE</span>
+            </a>
+            <a href="https://youtube.com/@Junnn181" target="_blank" class="link-card">
+                <span class="mr-3">🎥</span> <span>YOUTUBE CHANNEL</span>
+            </a>
+            <button onclick="copyToClipboard('impreza6696@gmail.com')" class="link-card w-full">
+                <span class="mr-3">✉️</span> <span>CONTACT EMAIL</span>
+            </button>
+        </div>
+
+        <div class="mt-12 text-left px-2">
+            <h3 class="text-xs tracking-[0.3em] text-gray-600 uppercase mb-4 pl-1">Latest Showcase / 作品展示</h3>
+            <div class="work-slider">
+                <div class="work-item">Motion Design</div>
+                <div class="work-item">3D Sculpture</div>
+                <div class="work-item">VFX Lab</div>
+                <div class="work-item">Interactive</div>
+            </div>
+        </div>
+
+        <footer class="mt-16 pb-10">
+            <p class="text-[10px] tracking-[0.5em] text-gray-700 uppercase">© 2025 WU JUN YI | CONNECT HUB</p>
+        </footer>
+    </div>
+
+    <div id="toast">已複製郵件地址</div>
+
+    <script>
+        function copyToClipboard(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
